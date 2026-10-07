@@ -1,0 +1,15 @@
+{
+  "name": "channel-kit",
+  "description": "Free skills, plugins and mods from the channel. One folder per item, each installable on its own.",
+  "owner": {
+    "name": "Josh Chang"
+  },
+  "plugins": [
+    {
+      "name": "verify-setup",
+      "source": "./plugins/verify-setup",
+      "description": "Interviews you about your project, then writes live-run verification rules into its CLAUDE.md so the agent proves its work instead of claiming it.",
+      "category": "workflow"
+    }
+  ]
+}

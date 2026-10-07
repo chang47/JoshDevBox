@@ -1,0 +1,11 @@
+{
+  "name": "verify-setup",
+  "displayName": "Verification Setup",
+  "version": "0.1.0",
+  "description": "Interviews you about your project, then writes live-run verification rules into its CLAUDE.md so the agent proves its work instead of claiming it.",
+  "author": {
+    "name": "Josh Chang"
+  },
+  "license": "MIT",
+  "keywords": ["verification", "claude-md", "evidence", "testing", "workflow"]
+}
