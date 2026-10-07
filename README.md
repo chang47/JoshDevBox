@@ -1,4 +1,4 @@
-# channel-kit
+# JoshDevBox
 
 Free tools from the channel — skills, plugins, and mods I actually use, published as a
 by-product of the videos. One folder per item under `plugins/`, and the repo is a
@@ -13,19 +13,19 @@ you can install any single item without the rest.
 Add the marketplace once (shell, outside a session):
 
 ```bash
-claude plugin marketplace add <owner>/<repo>
+claude plugin marketplace add chang47/JoshDevBox
 ```
 
-Then install whatever you want by `<item>@channel-kit`:
+Then install whatever you want by `<item>@joshdevbox`:
 
 ```bash
-claude plugin install verify-setup@channel-kit                  # for you, every project
-claude plugin install verify-setup@channel-kit --scope project  # just this repo, shared via .claude/settings.json
+claude plugin install verify-setup@joshdevbox                  # for you, every project
+claude plugin install verify-setup@joshdevbox --scope project  # just this repo, shared via .claude/settings.json
 ```
 
-Inside a session the same thing is `/plugin marketplace add <owner>/<repo>` then
-`/plugin install verify-setup@channel-kit`. Remove with
-`claude plugin uninstall verify-setup@channel-kit` (or `claude plugin marketplace remove channel-kit`
+Inside a session the same thing is `/plugin marketplace add chang47/JoshDevBox` then
+`/plugin install verify-setup@joshdevbox`. Remove with
+`claude plugin uninstall verify-setup@joshdevbox` (or `claude plugin marketplace remove joshdevbox`
 to drop everything).
 
 ## Items
