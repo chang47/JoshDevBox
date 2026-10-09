@@ -1,14 +1,27 @@
 # JoshDevBox
 
-Free tools from the channel — skills, plugins, and mods I actually use, published as a
-by-product of the videos. One folder per item under `plugins/`, and the repo is a
-[Claude Code plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces), so
-you can install any single item without the rest.
+Free fixes from the channel: copy-paste prompts first, plus skills, plugins and mods I actually use,
+published as a by-product of the videos.
 
 > **Provided as-is, no support.** These are my working tools, shared so you can copy the idea.
-> Read a skill before you install it. Issues/PRs may be ignored. MIT licensed.
+> Read a prompt or skill before you use it. Issues/PRs may be ignored. MIT licensed.
 
-## Install
+## Prompts (copy-paste, no install)
+
+Open the file, copy everything below its line, and paste it into your coding agent (Claude Code,
+Codex, Cursor, anything that can read your repo and run commands) from your project's root.
+
+| Prompt | What it does | Video |
+| :- | :- | :- |
+| [`verify-setup`](prompts/verify-setup.md) | Asks you a few questions about your project, then writes a `## Verification` section into your `CLAUDE.md` (or `AGENTS.md`) and one live check, and runs it once, so the agent *proves* its work (real UI / real CLI / real API / real output) instead of claiming it. Unit tests are hygiene, not evidence. | #4 — How I verify AI's work |
+
+## Plugins (optional, for Claude Code)
+
+Some items are also a [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
+entry, so you can install one as a skill instead of pasting the prompt. One folder per item under
+`plugins/`; install any single item without the rest.
+
+### Install
 
 Add the marketplace once (shell, outside a session):
 
@@ -28,7 +41,7 @@ Inside a session the same thing is `/plugin marketplace add chang47/JoshDevBox` 
 `claude plugin uninstall verify-setup@joshdevbox` (or `claude plugin marketplace remove joshdevbox`
 to drop everything).
 
-## Items
+### Items
 
 | Item | What it does | Run it | Video |
 | :- | :- | :- | :- |
@@ -37,6 +50,7 @@ to drop everything).
 ## Layout
 
 ```
+prompts/<slug>.md                 # paste-in prompts (self-contained)
 .claude-plugin/marketplace.json   # the catalog: one entry per item
 plugins/<item>/
   .claude-plugin/plugin.json      # item manifest (name must match its marketplace entry)
@@ -44,7 +58,8 @@ plugins/<item>/
   README.md
 ```
 
-Adding an item: drop it in `plugins/<item>/`, add an entry to `marketplace.json`, then
+Adding a prompt: drop it in `prompts/` and add a row to the Prompts table.
+Adding a plugin: drop it in `plugins/<item>/`, add an entry to `marketplace.json`, then
 `claude plugin validate .` must pass.
 
 ## License
