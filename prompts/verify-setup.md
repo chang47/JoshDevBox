@@ -2,8 +2,9 @@
 
 Copy everything below the line into your coding agent (Claude Code, Codex, Cursor, anything that
 can read your repo and run commands), from the root of your project. It asks you a few questions,
-then writes a `## Verification` section into your `CLAUDE.md` (or `AGENTS.md`) plus one live check,
-and runs that check once so you see it work. Same thing as the `verify-setup` plugin, no install.
+sets up what your agent needs to check its own work (the Playwright MCP server for a web UI, `adb` and
+an emulator for Android, the server log for a backend), then writes a `## Verification` section into
+your `CLAUDE.md` (or `AGENTS.md`) plus one live check, and runs that check once so you see it work. Same thing as the `verify-setup` plugin, no install.
 
 ---
 
@@ -18,7 +19,9 @@ The output is (1) a `## Verification` section in this project's agent instructio
    change works.
 3. Prove it with a live run of the real thing, at the layer the change lives in: UI → drive the real
    page in a browser and look; CLI → run the real command on real input; API → hit the running
-   server, show the status + body (and the log if there is one); files/data → open the real output.
+   server, show the status + body and the server log line it wrote; mobile → install the real app on
+   an emulator or device and drive it (Android: `adb install`, `adb shell am start`, `adb shell input
+   tap`, `adb exec-out screencap`), then look at the screenshot; files/data → open the real output.
    Hardware, audio or "does it feel right" → a human checks; say so, never fake it.
 4. Pasted output or it didn't happen. "It passes" without the output of a command run in this
    session means not done.
@@ -35,19 +38,29 @@ these in ONE message, numbered, each with your best guess filled in so I can jus
 2. What does "done" mean for a typical change? One recent example and how I'd know it worked.
 3. What can run live on this machine (dev server + URL, CLI entry point, sample inputs), and what
    can't (hardware, paid APIs, prod)?
-4. What already exists (test/lint commands, browser automation, fixtures, CI)?
+4. What already exists (test/lint commands, browser automation like the Playwright MCP server, an
+   Android SDK + emulator, server logs, fixtures, CI)?
 5. Who re-checks independently (fresh session, CI, me)?
 6. Anything that must never be touched or run (prod data, deploys, paid calls, secrets)?
 Then stop and wait for my answers. (If I already answered them after this prompt, don't re-ask.)
 
-**Step 2: write one live check** for the main surface, in `verify/`, using only tools that are
-already installed (don't install anything without asking). It must use the real entry point on
+**Step 2: set up the tools to check with**, only what this project needs, and ask me before
+installing anything:
+- Web UI, and you can't drive a real browser yet → offer to add the Playwright MCP server (in Claude
+  Code: `claude mcp add playwright npx @playwright/mcp@latest`, then restart the session).
+- Android → check `adb devices` lists an emulator or device; if it doesn't, tell me how to start one
+  (it comes with the Android SDK). Nothing else to install: you drive it with `adb`.
+- Backend → make sure the server writes a log line for the thing a change touches, so you can read
+  it back.
+
+**Step 3: write one live check** for the main surface, in `verify/`, using the tools from Step 2.
+It must use the real entry point on
 real or realistic input with no mocks of the thing under test, assert concrete expectations taken
 from my definition of done (not from what the code happens to do now), print what it saw, and exit
 non-zero on any mismatch. Run it now and paste the output. If it fails, that's a finding: report
 it, don't change the expectation to match the code.
 
-**Step 3: write the section.** Append this to `CLAUDE.md` (or `AGENTS.md` if that's what the
+**Step 4: write the section.** Append this to `CLAUDE.md` (or `AGENTS.md` if that's what the
 project uses; replace an existing Verification section), filling every `<>` from my answers:
 
 ```markdown
@@ -68,6 +81,6 @@ A change is done only when you've run the matching check below IN THIS SESSION a
 - Never: <off-limits actions>.
 ```
 
-**Step 4: report** the answers you used, the files you created or changed, the section as
+**Step 5: report** the answers you used, the tools you set up, the files you created or changed, the section as
 written, and the check's real pasted output. End with the one command someone else should run to
 re-check it.
