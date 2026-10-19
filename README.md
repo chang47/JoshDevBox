@@ -14,6 +14,7 @@ Codex, Cursor, anything that can read your repo and run commands) from your proj
 | Prompt | What it does | Video |
 | :- | :- | :- |
 | [`verify-setup`](prompts/verify-setup.md) | Asks you a few questions about your project, then writes a `## Verification` section into your `CLAUDE.md` (or `AGENTS.md`) and one live check, and runs it once, so the agent *proves* its work (real UI / real CLI / real API / real output) instead of claiming it. Unit tests are hygiene, not evidence. | #4 — How I verify AI's work |
+| [`handoff`](prompts/handoff.md) | Paste it when you're about to stop mid-task. Your agent writes a `HANDOFF.md` a fresh session can pick up from alone: your rules first, then what's built, decisions, where things live, dead ends and the one next step, plus the line to start the new chat with. | Compact, clear, or hand off |
 
 ## Plugins (optional, for Claude Code)
 
