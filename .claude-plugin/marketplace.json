@@ -10,6 +10,12 @@
       "source": "./plugins/verify-setup",
       "description": "Interviews you about your project, then writes live-run verification rules into its CLAUDE.md so the agent proves its work instead of claiming it.",
       "category": "workflow"
+    },
+    {
+      "name": "ai-briefing",
+      "source": "./plugins/ai-briefing",
+      "description": "A weekly AI news briefing: searches your topics, keeps only claims two independent sources back, drops duplicates, ranks the rest and writes a dated HTML report linking every source.",
+      "category": "research"
     }
   ]
 }

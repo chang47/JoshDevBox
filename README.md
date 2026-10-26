@@ -47,6 +47,7 @@ to drop everything).
 | Item | What it does | Run it | Video |
 | :- | :- | :- | :- |
 | [`verify-setup`](plugins/verify-setup) | Interviews you about your project, then writes live-run verification rules into its `CLAUDE.md` so the agent *proves* its work (real UI / real CLI / real API / real output file) instead of claiming it. Unit tests are hygiene, not evidence. | `/verify-setup:verify-setup` | #4 — How I verify AI's work |
+| [`ai-briefing`](plugins/ai-briefing) | A weekly AI news briefing you can check: searches the past week on the topics in its `topics.md`, keeps only claims two independent sources back, drops duplicates, ranks the rest and writes a dated HTML report linking every source. Ask for "my AI briefing". Works without the plugin too: copy `skills/ai-briefing/` into `.claude/skills/`. | `/ai-briefing:ai-briefing` | Claude Code Skills Explained |
 
 ## Layout
 
