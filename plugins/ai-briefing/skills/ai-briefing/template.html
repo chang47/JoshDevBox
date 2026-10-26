@@ -1,0 +1,88 @@
+<!doctype html>
+<!--
+  ai-briefing report template. Replace every {{...}} and repeat the marked blocks.
+  Keep it one self-contained file: no scripts, no external fonts, images or stylesheets.
+  A style skill (topics.md `style:`) may change the :root colors, the fonts and the decoration; keep the structure.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI briefing · {{DATE}}</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --ink: #e8e6e1;
+    --muted: #9a9890;
+    --accent: #f2b705;
+    --line: #2a2e38;
+    --link: #8ab4ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.6 Georgia, "Times New Roman", serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 20px 72px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 24px; margin-bottom: 40px; }
+  .kicker {
+    font: 600 13px/1 system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+  }
+  h1 { font-size: 44px; line-height: 1.1; margin: 12px 0 8px; }
+  .window { color: var(--muted); font: 15px/1.4 system-ui, sans-serif; }
+  section { margin-bottom: 44px; }
+  h2 {
+    font: 700 14px/1 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 0 0 18px;
+  }
+  article {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px; margin-bottom: 14px;
+  }
+  article h3 { font-size: 21px; line-height: 1.3; margin: 0 0 6px; }
+  .rank { color: var(--accent); margin-right: 6px; }
+  article p { margin: 0 0 10px; }
+  .meta { font: 13px/1.5 system-ui, sans-serif; color: var(--muted); }
+  .sources a { color: var(--link); text-decoration: none; margin-right: 12px; white-space: nowrap; }
+  .sources a:hover { text-decoration: underline; }
+  .empty { color: var(--muted); font-style: italic; }
+  footer {
+    border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted);
+    font: 14px/1.5 system-ui, sans-serif;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="kicker">AI briefing</div>
+    <h1>{{TITLE}}</h1>
+    <div class="window">{{WINDOW_START}} to {{DATE}} · {{KEPT}} items, each backed by two or more sources</div>
+  </header>
+
+  <!-- repeat per topic -->
+  <section>
+    <h2>{{TOPIC}}</h2>
+
+    <!-- repeat per kept claim, ranked -->
+    <article>
+      <h3><span class="rank">{{N}}.</span>{{HEADLINE}}</h3>
+      <p>{{ONE_OR_TWO_PLAIN_SENTENCES}}</p>
+      <div class="meta">{{CLAIM_DATE}} · <span class="sources">
+        <a href="{{SOURCE_URL}}" target="_blank" rel="noopener">{{PUBLISHER}}</a><!-- one link per source -->
+      </span></div>
+    </article>
+    <!-- end claim -->
+
+    <!-- a topic with no kept claim: <p class="empty">Nothing this week that two sources back.</p> -->
+  </section>
+  <!-- end topic -->
+
+  <footer>
+    {{FOUND}} claims found · {{KEPT}} kept · {{DROPPED}} dropped for having one source.
+    Written {{DATE}}.
+  </footer>
+</main>
+</body>
+</html>

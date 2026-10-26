@@ -1,0 +1,11 @@
+{
+  "name": "ai-briefing",
+  "displayName": "AI Briefing",
+  "version": "0.1.0",
+  "description": "A weekly AI news briefing: searches your topics, keeps only claims two independent sources back, drops duplicates, ranks the rest and writes a dated HTML report linking every source.",
+  "author": {
+    "name": "Josh Chang"
+  },
+  "license": "MIT",
+  "keywords": ["news", "briefing", "research", "sources", "report"]
+}
